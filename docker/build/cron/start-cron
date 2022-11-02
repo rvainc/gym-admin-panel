@@ -1,0 +1,18 @@
+#!/bin/bash
+
+# start cron
+service cron start
+
+# remove write permission for (g)roup and (o)ther (required by cron)
+chmod -R go-w /etc/cron.d
+
+# trap SIGINT and SIGTERM signals and gracefully exit
+trap "service cron stop; kill \$!; exit" SIGINT SIGTERM
+
+# start "daemon"
+while true
+do
+    # watch /var/log/cron.log restarting if necessary
+    cat /var/log/cron.log & wait $!
+done
+
