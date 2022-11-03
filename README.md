@@ -7,13 +7,9 @@
 
 ## Get Started for Developers
 
----
-
 > You will need to have ```php8.1``` and ```composer```.
 ### Composer
 - Installing all composer packages ```composer install```
-
----
 
 ### .env
 1. duplicate file ```.env.example``` with name ```.env```
@@ -77,19 +73,15 @@
     VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
     VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
----
 
 > You will need to have ```pdo``` ```pgsql``` ```pdo_pgsql```.
 
 ### Database
  1. run ```php artisan migrate```
 
----
-
 ### Node
  - Install ```npm install```
 
----
 ### How to run?
 
 1. Configure nginx  
@@ -119,8 +111,6 @@ example:
 }
 ```
 2. run ```npm run dev```
-
----
 
 ### Deploying 
 Coming soon...
