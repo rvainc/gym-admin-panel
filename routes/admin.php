@@ -16,5 +16,5 @@ use Inertia\Inertia;
 */
 
 Route::get('/', function () {
-    return 'admin part';
-});
+    return Inertia::render('Admin/Home');
+})->name('admin.index');
