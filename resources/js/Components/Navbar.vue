@@ -1,35 +1,44 @@
 <template>
-    <el-menu
-        :default-active="activeIndex"
-        class="el-menu-demo"
-        mode="horizontal"
-        @select="handleSelect"
-    >
-        <el-menu-item index="1">Processing Center</el-menu-item>
-        <el-sub-menu index="2">
-            <template #title>Workspace</template>
-            <el-menu-item index="2-1">item one</el-menu-item>
-            <el-menu-item index="2-2">item two</el-menu-item>
-            <el-menu-item index="2-3">item three</el-menu-item>
-            <el-sub-menu index="2-4">
-                <template #title>item four</template>
-                <el-menu-item index="2-4-1">item one</el-menu-item>
-                <el-menu-item index="2-4-2">item two</el-menu-item>
-                <el-menu-item index="2-4-3">item three</el-menu-item>
-            </el-sub-menu>
-        </el-sub-menu>
-        <el-menu-item index="3" disabled>Info</el-menu-item>
-        <el-menu-item index="4">Orders</el-menu-item>
-    </el-menu>
-    <div class="h-6"/>
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary container-fluid shadow shadow-lg sticky-top"
+         style="opacity: 96%">
+        <div class="container">
+            <Link class="navbar-brand" :href="route('admin.dashboard')">U.S.A</Link>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                    <li class="nav-item">
+                        <Link class="nav-link active" aria-current="page" :href="route('admin.customers.index')">Клієнти</Link>
+                    </li>
+                </ul>
+                <form class="d-flex" role="search">
+                    <div class="input-group">
+                        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
+                               aria-describedby="button-addon2">
+                        <button class="btn btn-secondary" type="button" id="button-addon2">
+                            <i class="fa-solid fa-barcode"></i>
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </nav>
 </template>
 
-<script lang="ts" setup>
-import {ref} from 'vue'
+<script>
+import {Link} from "@inertiajs/inertia-vue3";
 
-const activeIndex = ref('1')
-const activeIndex2 = ref('1')
-const handleSelect = (key: string, keyPath: string[]) => {
-    console.log(key, keyPath)
+export default {
+    name: 'Navbar',
+    components: {
+        Link,
+    }
 }
 </script>
+
+<style scoped>
+
+</style>

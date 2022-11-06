@@ -18,6 +18,7 @@ return new class extends Migration {
             $table->string('last_name')->nullable();
             $table->string('phone_number')->unique();
             $table->string('card_number')->nullable();
+            $table->string('image')->nullable();
             $table->timestamps();
         });
     }
@@ -29,6 +30,6 @@ return new class extends Migration {
      */
     public function down()
     {
-        Schema::dropIfExists('clients');
+        Schema::dropIfExists('customers');
     }
 };

@@ -1,8 +1,9 @@
 <?php
 
-use Illuminate\Foundation\Application;
+use App\Http\Controllers\Admin\CustomerController;
+use App\Http\Controllers\Admin\DashboardController;
+use App\Http\Middleware\HandleInertiaRequests;
 use Illuminate\Support\Facades\Route;
-use Inertia\Inertia;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,6 +16,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('Admin/Home');
-})->name('admin.index');
+Route::middleware([])->group(function () {
+    Route::get('/', [DashboardController::class, 'index'])->name('admin.dashboard');
+
+    Route::get('/customers', [CustomerController::class, 'index'])->name('admin.customers.index');
+    Route::get('/customers/create', [CustomerController::class, 'create'])->name('admin.customers.create');
+    Route::post('/customers', [CustomerController::class, 'store'])->name('admin.customers.store');
+});

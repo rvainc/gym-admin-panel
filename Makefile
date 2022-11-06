@@ -15,9 +15,6 @@ update:
 php:
 	docker compose exec php bash
 
-node:
-	docker compose run node bash
-
 ps:
 	docker compose ps
 
@@ -41,3 +38,9 @@ git-commit:
 	make down
 	git add .
 	git commit -m "$(m)"
+
+exec-node:
+	docker compose exec node bash
+
+run-node:
+	docker compose run node bash
