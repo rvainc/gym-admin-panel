@@ -17,7 +17,7 @@ class CustomerStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'first_name' => ['nullable', 'string', 'max:100'],
+            'first_name' => ['required', 'string', 'max:100'],
             'last_name' => ['nullable', 'string', 'max:100'],
             'phone_number' => [
                 'required',

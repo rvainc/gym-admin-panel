@@ -1,5 +1,5 @@
 <template>
-    <nav class="navbar navbar-dark navbar-expand-lg bg-primary container-fluid shadow shadow-lg sticky-top"
+    <nav class="navbar navbar-dark navbar-expand-lg bg-primary shadow shadow-lg fixed-top"
          style="opacity: 96%">
         <div class="container">
             <Link class="navbar-brand" :href="route('admin.dashboard')">U.S.A</Link>
@@ -11,34 +11,40 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <Link class="nav-link active" aria-current="page" :href="route('admin.customers.index')">Клієнти</Link>
+                        <Link class="nav-link active" aria-current="page" :href="route('admin.customers.index')">
+                            Клієнти
+                        </Link>
                     </li>
                 </ul>
                 <form class="d-flex" role="search">
                     <div class="input-group">
-                        <input type="text" class="form-control" placeholder="Search" aria-label="Search"
-                               aria-describedby="button-addon2">
-                        <button class="btn btn-secondary" type="button" id="button-addon2">
+                        <input v-model="searchInput" type="text" class="form-control" placeholder="Search"
+                               aria-label="Search">
+                        <button @click="showBarCodeReader = true" class="btn btn-secondary" type="button"
+                                id="button-addon2">
                             <i class="fa-solid fa-barcode"></i>
+                        </button>
+                        <button class="btn btn-secondary" type="button">
+                            <i class="fa-solid fa-magnifying-glass"></i>
                         </button>
                     </div>
                 </form>
             </div>
         </div>
     </nav>
+    <bar-code-reader :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
 </template>
 
-<script>
+<script setup>
 import {Link} from "@inertiajs/inertia-vue3";
+import BarCodeReader from "@/Components/BarCodeReader.vue";
+import {ref} from "vue";
 
-export default {
-    name: 'Navbar',
-    components: {
-        Link,
-    }
+const showBarCodeReader = ref(false);
+const searchInput = ref('');
+
+function onDecode(result) {
+    showBarCodeReader.value = false;
+    searchInput.value = result;
 }
 </script>
-
-<style scoped>
-
-</style>

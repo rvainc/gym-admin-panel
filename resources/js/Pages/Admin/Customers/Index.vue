@@ -1,5 +1,5 @@
 <template>
-    <AuthenticatedLayout>
+    <authenticated-layout>
         <div class="d-flex align-auto align-items-center">
             <div class="h4 m-0 me-auto">Клієнти</div>
             <div>
@@ -39,13 +39,15 @@
                 </li>
             </ul>
         </nav>
-    </AuthenticatedLayout>
+    </authenticated-layout>
 </template>
 
 <script setup>
 import {Link} from "@inertiajs/inertia-vue3";
 import AuthenticatedLayout from '@/Layouts/Admin/AuthenticatedLayout.vue';
+
 defineProps([
     'customers',
 ]);
+
 </script>

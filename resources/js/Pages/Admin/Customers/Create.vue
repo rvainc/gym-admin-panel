@@ -27,10 +27,10 @@
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
-                        <label for="cardNumberInput" aria-describedby="button-addon2" class="form-label">Номер карти</label>
+                        <label class="form-label">Номер карти</label>
                         <div class="input-group">
                             <input type="text" class="form-control" id="cardNumberInput" v-model="form.card_number">
-                            <button class="btn btn-outline-secondary" type="button" id="button-addon1">
+                            <button class="btn btn-outline-secondary" @click.prevent="showBarCodeReader = true">
                                 <i class="fa-solid fa-barcode"></i>
                             </button>
                         </div>
@@ -42,28 +42,27 @@
             <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
         </form>
     </authenticated-layout>
+    <bar-code-reader :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
 </template>
 
-<script>
+<script setup>
 import AuthenticatedLayout from '@/Layouts/Admin/AuthenticatedLayout.vue';
-import { useForm } from '@inertiajs/inertia-vue3'
+import BarCodeReader from '@/Components/BarCodeReader.vue'
 import InputError from "@/Components/InputError.vue";
+import {useForm} from '@inertiajs/inertia-vue3'
+import {ref} from "vue";
 
-export default {
-    components: {
-        InputError,
-        AuthenticatedLayout,
-    },
+const showBarCodeReader = ref(false);
 
-    setup () {
-        const form = useForm({
-            first_name: null,
-            last_name: null,
-            phone_number: null,
-            card_number: null,
-        })
-
-        return { form }
-    },
+function onDecode(result) {
+    showBarCodeReader.value = false;
+    form.card_number = result;
 }
+
+const form = useForm({
+    first_name: null,
+    last_name: null,
+    phone_number: null,
+    card_number: null,
+});
 </script>
