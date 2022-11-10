@@ -42,13 +42,13 @@
             <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
         </form>
     </authenticated-layout>
-    <bar-code-reader :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
+    <bar-code-reader-modal :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
 </template>
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Admin/AuthenticatedLayout.vue';
-import BarCodeReader from '@/Components/BarCodeReader.vue'
-import InputError from "@/Components/InputError.vue";
+import BarCodeReaderModal from '@/Components/ModalWindows/BarCodeReaderModal.vue'
+import InputError from "@/Components/Inputs/InputError.vue";
 import {useForm} from '@inertiajs/inertia-vue3'
 import {ref} from "vue";
 
@@ -56,7 +56,7 @@ const showBarCodeReader = ref(false);
 
 function onDecode(result) {
     showBarCodeReader.value = false;
-    form.card_number = result;
+    form.card_number = result.text;
 }
 
 const form = useForm({

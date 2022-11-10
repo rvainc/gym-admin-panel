@@ -32,19 +32,20 @@
             </div>
         </div>
     </nav>
-    <bar-code-reader :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
+    <bar-code-reader-modal :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
 </template>
 
 <script setup>
 import {Link} from "@inertiajs/inertia-vue3";
-import BarCodeReader from "@/Components/BarCodeReader.vue";
+import BarCodeReaderModal from "@/Components/ModalWindows/BarCodeReaderModal.vue";
 import {ref} from "vue";
 
 const showBarCodeReader = ref(false);
 const searchInput = ref('');
 
 function onDecode(result) {
+    console.log(result);
     showBarCodeReader.value = false;
-    searchInput.value = result;
+    searchInput.value = result.text;
 }
 </script>
