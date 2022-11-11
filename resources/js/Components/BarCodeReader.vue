@@ -1,26 +1,24 @@
 <template>
-    <div
-        v-if="videoDeviceStatus === CAMERA_LOADING"
-        class="d-flex justify-content-center align-items-center"
-        style="width: 500px; height: 500px"
-    >
-        <div class="spinner-border text-primary" role="status">
-            <span class="visually-hidden">Loading...</span>
+    <div v-show="status === STATUS_LOADING">
+        <div
+            class="d-flex justify-content-center align-items-center box-500"
+        >
+            <div class="spinner-border text-primary" role="status">
+                <span class="visually-hidden">Loading...</span>
+            </div>
         </div>
     </div>
-    <div
-        v-if="videoDeviceStatus === CAMERA_ERROR"
-        class="alert alert-danger d-flex align-items-center"
-        role="alert"
-        style="width: 500px; height: 500px"
-    >
-        <div class="d-block w-100 text-center">
-            <div class="h4">Помилка</div>
-            <div>Жодної камери не знайдено або помилка у відтворенні зображення.</div>
+    <div v-show="status === STATUS_ERROR">
+        <div
+            class="bg-light d-flex align-items-center rounded box-500"
+        >
+            <div class="d-block w-100 text-center">
+                <div class="text-muted">Жодної камери не знайдено або помилка у відтворенні зображення.</div>
+            </div>
         </div>
     </div>
-    <span v-else>
-        <video id="video" width="500" height="500"></video>
+    <span v-show="status === STATUS_LOADED">
+        <video id="video" class="box-500"></video>
         <div class="dropdown">
             <button
                 class="btn btn-secondary dropdown-toggle d-flex align-items-center"
@@ -28,18 +26,19 @@
                 data-bs-toggle="dropdown"
                 aria-expanded="false"
             >
-                {{ selectedDeviceLabel }}
-
+                {{ selectedLabel }}
             </button>
             <ul class="dropdown-menu">
-                <li v-for="item in videoInputDevices" :key="item.deviceId">
+                <li v-for="item in devices" :key="item.deviceId">
                     <span>
                         <button
-                            class="dropdown-item d-flex justify-content-between align-items-center"
+                            class="dropdown-item d-flex align-items-center"
                             @click="changeCamera(item.deviceId, item.label)"
                         >
-                        {{ item.label }}
-                        <i class="fa-solid fa-check" v-if="selectedDeviceId === item.deviceId"></i>
+                            <div style="width: 10px">
+                                <i class="fa-solid fa-check" v-if="selectedId === item.deviceId"></i>
+                            </div>
+                            <div class="ms-3">{{ item.label }}</div>
                     </button>
                     </span>
                 </li>
@@ -50,51 +49,69 @@
 
 <script setup>
 import * as ZXing from "@zxing/library";
-import {onMounted, ref} from "vue";
+import {onMounted, onUnmounted, ref} from "vue";
 import _ from "lodash";
 
-const CAMERA_LOADING = 'loading';
-const CAMERA_LOADED = 'loaded';
-const CAMERA_ERROR = 'error';
+const STATUS_LOADING = 'loading';
+const STATUS_LOADED = 'loaded';
+const STATUS_ERROR = 'error';
+
+function setStatus(val) {
+    status.value = val;
+    emit(val);
+}
 
 const codeReader = new ZXing.BrowserMultiFormatReader();
 
-const selectedDeviceId = ref(null);
-const selectedDeviceLabel = ref('');
-const videoInputDevices = ref([]);
-const videoDeviceStatus = ref(CAMERA_LOADING);
+const selectedId = ref(null);
+const selectedLabel = ref('');
+const devices = ref([]);
+const status = ref(STATUS_LOADING);
 
 onMounted(() => {
     codeReader.listVideoInputDevices()
         .then(res => {
-            videoInputDevices.value = res;
-            if (!_.isEmpty(videoInputDevices.value)) {
-                changeCamera(videoInputDevices.value[0].deviceId, videoInputDevices.value[0].label);
-                videoDeviceStatus.value = CAMERA_LOADED;
+            devices.value = res;
+            if (!_.isEmpty(devices.value)) {
+                changeCamera(devices.value[0].deviceId, devices.value[0].label);
             } else {
-                videoDeviceStatus.value = CAMERA_ERROR;
+                setStatus(STATUS_ERROR);
             }
         });
 });
 
-function changeCamera(cameraId, label = "camera") {
-    videoDeviceStatus.value = CAMERA_LOADING;
+onUnmounted(() => {
     codeReader.reset();
-    selectedDeviceId.value = cameraId;
-    selectedDeviceLabel.value = label;
+});
 
-    codeReader.decodeFromVideoDevice(selectedDeviceId.value, 'video', (result, err) => {
-        videoDeviceStatus.value = CAMERA_LOADED;
+function changeCamera(cameraId, label = "camera") {
+    setStatus(STATUS_LOADING);
+    codeReader.reset();
+    selectedId.value = cameraId;
+    selectedLabel.value = label;
+
+    codeReader.decodeFromVideoDevice(selectedId.value, 'video', (result, err) => {
+        setStatus(STATUS_LOADED);
         if (result) {
             emit('decode', result)
         }
         if (err && !(err instanceof ZXing.NotFoundException)) {
-            videoDeviceStatus.value = CAMERA_ERROR;
+            setStatus(STATUS_ERROR);
         }
-    })
+    });
 }
 
 const emit = defineEmits([
     'decode',
+    'loading',
+    'loaded',
+    'error',
 ])
 </script>
+
+<style scoped>
+.box-500 {
+    width: 500px;
+    height: 500px;
+}
+</style>

@@ -44,7 +44,7 @@
                         class="page-item"
                         :class="{disabled: item.active}"
                     >
-                        <Link class="page-link" :href="item.url" v-html="item.label"/>
+                        <Link class="page-link text-primary" :href="item.url" v-html="item.label"/>
                     </li>
                 </ul>
             </nav>
