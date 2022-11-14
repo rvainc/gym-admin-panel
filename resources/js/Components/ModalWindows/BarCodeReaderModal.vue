@@ -9,9 +9,10 @@
         <bar-code-reader
             v-if="show"
             @decode="v => $emit('decode', v)"
-            @loading="canClose = false"
-            @loaded="canClose = true"
-            @error="canClose = true"
+            @loading="setCanClose(false)"
+            @loaded="setCanClose(true)"
+            @error="setCanClose(true)"
+            style="width: 500px; max-width: 100vw"
         />
     </vue-final-modal>
 </template>
@@ -22,6 +23,10 @@ import {VueFinalModal} from 'vue-final-modal';
 import {ref} from "vue";
 
 const canClose = ref(false);
+
+function setCanClose(value) {
+    canClose.value = value;
+}
 
 const props = defineProps({
     show: {
