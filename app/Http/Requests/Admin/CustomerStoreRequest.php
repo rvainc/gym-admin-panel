@@ -3,8 +3,10 @@
 namespace App\Http\Requests\Admin;
 
 use Exception;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Foundation\Http\FormRequest;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Validation\Rule;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
 class CustomerStoreRequest extends FormRequest
@@ -30,13 +32,31 @@ class CustomerStoreRequest extends FormRequest
                         return;
                     }
 
-                    $exists = DB::table('customers')->where('phone_number', $value)->exists();
+                    $exists = DB::table('customers')
+                        ->where('phone_number', $value)
+                        ->when($this->route('customer'), function (Builder $builder, $model) {
+                            return $builder->where('id', '!=', $model->id);
+                        })
+                        ->exists();
                     if ($exists) {
                         $fail(__('validation.unique'));
                     }
                 },
             ],
-            'card_number' => ['nullable', 'string', 'max:100'],
+            'card_number' => [
+                'nullable',
+                'string',
+                'max:100',
+                Rule::unique('customers', 'card_number')->ignore($this->route('customer'))
+            ],
         ];
+    }
+
+    /**
+     * @return null
+     */
+    protected function getModel()
+    {
+        return null;
     }
 }

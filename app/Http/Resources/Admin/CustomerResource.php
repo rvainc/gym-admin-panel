@@ -26,6 +26,9 @@ class CustomerResource extends JsonResource
                 'full_name' => trim(implode(' ', [$this->resource->first_name, $this->resource->last_name])),
                 'phone_number' => $this->resource->phone_number,
                 'card_number' => $this->resource->card_number,
+                'url' => route('admin.customers.show', ['customer' => $this->resource->id]),
+                'edit_url' => route('admin.customers.edit', ['customer' => $this->resource->id]),
+                'delete_url' => route('admin.customers.delete', ['customer' => $this->resource->id]),
             ]
         ];
     }

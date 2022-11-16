@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\CustomerStoreRequest;
+use App\Http\Requests\Admin\CustomerUpdateRequest;
 use App\Http\Resources\Admin\CustomerResource;
 use App\Models\Customer;
 use App\Support\Helper;
@@ -51,5 +52,42 @@ class CustomerController extends Controller
         $model->save();
 
         return Redirect::route('admin.customers.index');
+    }
+
+    public function show(Customer $customer)
+    {
+        return Inertia::render('Admin/Customers/Customer', [
+            'customer' => CustomerResource::make($customer),
+        ]);
+    }
+
+    public function update(CustomerUpdateRequest $request, Customer $customer)
+    {
+        $customer->fill($request->validated())->save();
+
+        return Redirect::route('admin.customers.show', ['customer' => $customer->id]);
+    }
+
+    public function edit(Customer $customer)
+    {
+        return Inertia::render('Admin/Customers/Edit', [
+            'customer' => CustomerResource::make($customer),
+        ]);
+    }
+
+    public function delete(Customer $customer)
+    {
+        $customer->card_number = null;
+        $customer->save();
+        $customer->delete();
+
+        return Redirect::route('admin.customers.index');
+    }
+
+    public function restore(Customer $customer)
+    {
+        $customer->restore();
+
+        return Redirect::route('admin.customers.show', ['id' => $customer->id]);
     }
 }

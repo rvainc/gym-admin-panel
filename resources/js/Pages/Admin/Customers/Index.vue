@@ -17,23 +17,41 @@
             </div>
         </div>
         <div v-if="customers.data.length">
-            <table class="table table-striped mt-3">
+            <table class="table table-hover mt-3 w-100">
                 <thead>
                 <tr>
-                    <th scope="col">id</th>
-                    <th scope="col">Повне ім'я</th>
-                    <th scope="col">Телефон</th>
-                    <th scope="col">Номер картки</th>
-                    <th scope="col">Статус</th>
+                    <th scope="col" style="width: 1%">#</th>
+                    <th scope="col">
+                        <div>Клієнт</div>
+                    </th>
+                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Телефон</th>
+                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Номер картки</th>
+                    <th scope="col" class="d-none d-md-table-cell" style="width: 1%">Статус</th>
+                    <th scope="col" style="width: 1%"/>
                 </tr>
                 </thead>
                 <tbody>
                 <tr v-for="customer in customers.data" :key="customer.data.id">
                     <td>{{ customer.data.id }}</td>
-                    <td>{{ customer.data.full_name }}</td>
-                    <td>{{ customer.data.phone_number }}</td>
-                    <td>{{ customer.data.card_number || '-' }}</td>
-                    <td><span class="badge text-bg-success">active</span></td>
+                    <td class="text-truncate" style="max-width: 0">
+                        <div>{{ customer.data.full_name }}</div>
+                        <div class="d-md-none">{{ customer.data.phone_number}}</div>
+                        <div class="d-md-none">
+                            <i v-if="customer.data.card_number" class="fa-solid fa-credit-card text-secondary me-2"></i>
+                            {{ customer.data.card_number}}
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">{{ customer.data.phone_number }}</td>
+                    <td class="d-none d-md-table-cell">{{ customer.data.card_number || '-' }}</td>
+                    <td class="d-none d-md-table-cell"><span class="badge text-bg-success">active</span></td>
+                    <td class="text-nowrap">
+                        <Link :href="customer.data.edit_url" class="me-2">
+                            <i class="fa-solid fa-pen-to-square text-secondary"></i>
+                        </Link>
+                        <Link :href="customer.data.url">
+                            <i class="fa-solid fa-eye text-secondary"></i>
+                        </Link>
+                    </td>
                 </tr>
                 </tbody>
             </table>

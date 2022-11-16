@@ -2,7 +2,7 @@
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary shadow shadow-lg fixed-top"
          style="opacity: 96%">
         <div class="container">
-            <Link class="navbar-brand pe-4 border-end " :href="route('admin.dashboard')">Universal Sports Academy</Link>
+            <Link class="navbar-brand" :href="route('admin.home')">Universal Sports Academy</Link>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                     data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                     aria-expanded="false" aria-label="Toggle navigation">

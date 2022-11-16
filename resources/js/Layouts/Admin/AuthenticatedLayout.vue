@@ -3,10 +3,12 @@ import Navbar from "@/Components/Navbar.vue";
 </script>
 
 <template>
-    <header class="mb-3">
+    <header>
         <navbar/>
     </header>
-    <main class="container shadow shadow-sm" style="margin-top: 70px; background-color: #ffffff; padding: 30px; border-radius: 10px; hid">
-        <slot/>
+    <main style="padding-top: 56px">
+        <div class="container shadow shadow-sm p-2 p-md-3 p-xl-4 mt-md-3 bg-white">
+            <slot/>
+        </div>
     </main>
 </template>

@@ -5,7 +5,7 @@ window._ = _;
 import '~bootstrap';
 
 // import bootstrap styles
-import '../bootstrap.scss'
+import '../bootstrap.scss';
 
 import * as Popper from '@popperjs/core'
 window.Popper = Popper

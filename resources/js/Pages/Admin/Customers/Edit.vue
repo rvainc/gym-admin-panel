@@ -1,7 +1,7 @@
 <template>
     <authenticated-layout>
-        <div class="h5 mb-4">Створити клієнта</div>
-        <form @submit.prevent="form.post(route('admin.customers.store'))">
+        <div class="h5 mb-4">Редагувати клієнта</div>
+        <form @submit.prevent="form.patch(route('admin.customers.update', customer.data.id))">
             <div class="row">
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
@@ -43,27 +43,21 @@
             <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
         </form>
     </authenticated-layout>
-    <bar-code-reader-modal :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
 </template>
 
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Admin/AuthenticatedLayout.vue';
-import BarCodeReaderModal from '@/Components/ModalWindows/BarCodeReaderModal.vue'
 import InputError from "@/Components/Inputs/InputError.vue";
-import {useForm} from '@inertiajs/inertia-vue3'
-import {ref} from "vue";
+import {useForm} from "@inertiajs/inertia-vue3";
 
-const showBarCodeReader = ref(false);
-
-function onDecode(result) {
-    showBarCodeReader.value = false;
-    form.card_number = result.text;
-}
+const props = defineProps([
+    'customer',
+]);
 
 const form = useForm({
-    first_name: null,
-    last_name: null,
-    phone_number: null,
-    card_number: null,
+    first_name: props.customer.data.first_name,
+    last_name: props.customer.data.last_name,
+    phone_number: props.customer.data.phone_number,
+    card_number: props.customer.data.card_number,
 });
 </script>
