@@ -18,6 +18,7 @@ use Illuminate\Support\Carbon;
  * @property string $image
  * @property Carbon $created_at
  * @property Carbon $updated_at
+ * @property Carbon $deleted_at
  *
  * Scopes
  * @method Builder|$this smartSearch(string $value)

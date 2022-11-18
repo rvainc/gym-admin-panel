@@ -26,7 +26,7 @@ Route::middleware([])->name('admin.')->group(function () {
     Route::get('/customers/{customer}', [CustomerController::class, 'show'])->name('customers.show');
     Route::get('/customers/{customer}/edit', [CustomerController::class, 'edit'])->name('customers.edit');
     Route::post('/customers', [CustomerController::class, 'store'])->name('customers.store');
-    Route::post('/customers/{customer}/restore', [CustomerController::class, 'restore'])->name('customers.restore');
+    Route::post('/customers/{customer}/restore', [CustomerController::class, 'restore'])->withTrashed()->name('customers.restore');
     Route::patch('/customers/{customer}', [CustomerController::class, 'update'])->name('customers.update');
     Route::delete('/customers/{customer}', [CustomerController::class, 'delete'])->name('customers.delete');
 });

@@ -11,6 +11,7 @@ use App\Support\Helper;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Session;
 use Inertia\Inertia;
 use Propaganistas\LaravelPhone\PhoneNumber;
 
@@ -18,7 +19,10 @@ class CustomerController extends Controller
 {
     public function index(Request $request)
     {
+        $showDeleted = $request->input('show_deleted');
+
         $customers = Customer::query()
+            ->withTrashed($showDeleted)
             ->when($request->input('search'), function (Customer|Builder $builder, $value) {
                 return $builder->smartSearch($value);
             })
@@ -37,6 +41,8 @@ class CustomerController extends Controller
         return Inertia::render('Admin/Customers/Index', [
             'customers' => CustomerResource::collection($customers),
             'labels' => $labels,
+            'show_deleted' => $showDeleted,
+            'message' => Session::get('message'),
         ]);
     }
 
@@ -88,6 +94,7 @@ class CustomerController extends Controller
     {
         $customer->restore();
 
-        return Redirect::route('admin.customers.show', ['id' => $customer->id]);
+        return Redirect::back()
+            ->with('message', ['text' => __('The client successfully restored!'), 'type' => 'success']);
     }
 }
