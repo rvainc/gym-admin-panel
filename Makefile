@@ -4,8 +4,8 @@ ifneq (,$(wildcard ./.env))
 endif
 
 fp:
-	sudo chown -R user:user ./app
-	sudo chown -R user:user ./database
+	@sudo chown -R user:user ./app
+	@sudo chown -R user:user ./database
 
 up:
 	@docker compose up -d

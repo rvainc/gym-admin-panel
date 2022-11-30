@@ -17,7 +17,8 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->integer('days');
-            $table->integer('price');
+            $table->bigInteger('price');
+            $table->softDeletes();
             $table->timestamps();
         });
     }

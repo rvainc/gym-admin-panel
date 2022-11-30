@@ -17,3 +17,9 @@ use Illuminate\Support\Facades\Artisan;
 Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
+
+//Artisan::command('fill:fake', function () {
+//    for ($i = 1; $i <= 200; $i++) {
+//
+//    }
+//});

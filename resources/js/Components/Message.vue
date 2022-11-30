@@ -5,7 +5,6 @@
 </template>
 
 <script setup>
-console.log(props)
 const props = defineProps([
     'message',
 ])

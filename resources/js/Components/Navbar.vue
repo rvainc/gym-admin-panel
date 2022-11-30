@@ -16,6 +16,24 @@
                         </Link>
                     </li>
                 </ul>
+                <ul class="navbar-nav flex-row flex-wrap">
+                    <li class="nav-item dropdown">
+                        <Link
+                            class="nav-link dropdown-toggle"
+                            role="button"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false"
+                        >
+                            Налаштування
+                            <i class="fa-md fa-solid fa-gear"></i>
+                        </Link>
+                        <ul class="dropdown-menu">
+                            <li>
+                                <Link class="dropdown-item" :href="route('admin.subscriptions.index')">Підписки</Link>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>

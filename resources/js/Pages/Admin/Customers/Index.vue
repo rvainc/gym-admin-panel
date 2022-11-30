@@ -66,6 +66,7 @@
                             v-if="customer.data.deleted_at"
                             @click="$inertia.post(customer.data.restore_url)"
                             class="fa-solid fa-reply link-secondary"
+                            type="button"
                         ></i>
                         <span v-else>
                             <Link :href="customer.data.edit_url" class="me-2 link-secondary">
@@ -119,7 +120,7 @@ const showDeleted = computed({
             show_deleted: showDeletedRef.value,
         });
     }
-})
+});
 
 const props = defineProps([
     'customers',
