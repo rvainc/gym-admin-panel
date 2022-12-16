@@ -25,13 +25,13 @@ class SubscriptionResource extends JsonResource
                 'title' => $this->resource->title,
                 'days' => $this->resource->days,
                 'price' => $this->resource->price,
-                'display_price' => (int)($this->resource->price / 100),
+                'display_price' => $this->resource->price / 100,
                 'deleted_at' => $this->resource->deleted_at,
-                'links' => [
-                    'delete_url' => route('admin.subscriptions.delete', ['subscription' => $this->resource->id]),
-                    'restore_url' => route('admin.subscriptions.restore', ['subscription' => $this->resource->id]),
-                    'edit_url' => route('admin.subscriptions.edit', ['subscription' => $this->resource->id]),
-                ],
+            ],
+            'links' => [
+                'delete_url' => route('admin.subscriptions.delete', ['subscription' => $this->resource->id]),
+                'restore_url' => route('admin.subscriptions.restore', ['subscription' => $this->resource->id]),
+                'edit_url' => route('admin.subscriptions.edit', ['subscription' => $this->resource->id]),
             ],
         ];
     }

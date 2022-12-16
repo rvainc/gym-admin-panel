@@ -21,7 +21,7 @@ class SubscriptionController extends Controller
      *
      * @return Response
      */
-    public function index(Request $request): Response
+    public function index(Request $request)
     {
         $showDeleted = $request->input('show_deleted');
 
@@ -41,7 +41,7 @@ class SubscriptionController extends Controller
      *
      * @return Response
      */
-    public function create(): Response
+    public function create()
     {
         return Inertia::render('Admin/Subscriptions/Create');
     }
@@ -52,7 +52,7 @@ class SubscriptionController extends Controller
      * @param SubscriptionStoreRequest $request
      * @return RedirectResponse
      */
-    public function store(SubscriptionStoreRequest $request): RedirectResponse
+    public function store(SubscriptionStoreRequest $request)
     {
         $attributes = $request->validated();
         $attributes['price'] = (int)($attributes['price'] * 100);
@@ -80,7 +80,7 @@ class SubscriptionController extends Controller
      * @param Subscription $subscription
      * @return Response
      */
-    public function edit(Subscription $subscription): Response
+    public function edit(Subscription $subscription)
     {
         return Inertia::render('Admin/Subscriptions/Edit', [
             'subscription' => SubscriptionResource::make($subscription),
@@ -94,7 +94,7 @@ class SubscriptionController extends Controller
      * @param Subscription $subscription
      * @return RedirectResponse
      */
-    public function update(SubscriptionUpdateRequest $request, Subscription $subscription): RedirectResponse
+    public function update(SubscriptionUpdateRequest $request, Subscription $subscription)
     {
         $attributes = $request->validated();
         $attributes['price'] = (int)($attributes['price'] * 100);

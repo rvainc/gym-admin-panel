@@ -44,15 +44,15 @@
                     <td class="text-nowrap text-end">
                         <i
                             v-if="subscription.data.deleted_at"
-                            @click="$inertia.post(subscription.data.links.restore_url)"
+                            @click="$inertia.post(subscription.links.restore_url)"
                             class="fa-solid fa-reply link-secondary"
                             type="button"
                         ></i>
                         <span v-else>
-                            <Link :href="subscription.data.links.edit_url" class="me-2 link-secondary">
+                            <Link :href="subscription.links.edit_url" class="me-2 link-secondary">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </Link>
-                            <span @click="$inertia.delete(subscription.data.links.delete_url)" type="button">
+                            <span @click="$inertia.delete(subscription.links.delete_url)" type="button">
                                 <i class="fa-solid fa-trash-can link-danger link-secondary"></i>
                             </span>
                         </span>

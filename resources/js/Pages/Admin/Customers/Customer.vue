@@ -34,13 +34,13 @@
                 </table>
             </div>
             <div class="col-12 col-md-6 d-flex mt-2 mt-sm-0 justify-content-md-end">
-                <Link :href="customer.data.edit_url" class="me-2">
+                <Link :href="customer.links.edit_url" class="me-2">
                     <button class="btn btn-secondary" style="width: 40px; height: 40px">
                         <i class="fa-solid fa-pen-to-square"></i>
                     </button>
                 </Link>
                 <button
-                    @click="$inertia.delete(customer.data.delete_url)"
+                    @click="$inertia.delete(customer.links.delete_url)"
                     class="btn btn-danger"
                     style="width: 40px; height: 40px"
                 >

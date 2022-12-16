@@ -64,15 +64,15 @@
                     <td class="text-nowrap text-end">
                         <i
                             v-if="customer.data.deleted_at"
-                            @click="$inertia.post(customer.data.restore_url)"
+                            @click="$inertia.post(customer.links.restore_url)"
                             class="fa-solid fa-reply link-secondary"
                             type="button"
                         ></i>
                         <span v-else>
-                            <Link :href="customer.data.edit_url" class="me-2 link-secondary">
+                            <Link :href="customer.links.edit_url" class="me-2 link-secondary">
                                 <i class="fa-solid fa-pen-to-square"></i>
                             </Link>
-                            <Link :href="customer.data.url" class="link-secondary">
+                            <Link :href="customer.links.url" class="link-secondary">
                                 <i class="fa-solid fa-eye"></i>
                             </Link>
                         </span>

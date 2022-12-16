@@ -4,11 +4,15 @@ ifneq (,$(wildcard ./.env))
 endif
 
 fp:
-	@sudo chown -R user:user ./app
-	@sudo chown -R user:user ./database
+	@sudo chown -R user:user ./*
+	@sudo chown -R user:www-data ./bootstrap/cache ./storage/app ./storage/framework  ./storage/logs
+	@sudo chmod -R g+w ./bootstrap/cache ./storage/app ./storage/framework  ./storage/logs
+	@sudo chmod o+w ./storage/ -R
 
 up:
 	@docker compose up -d
+	@sleep 1
+	@clear
 	@printf "client url: ${APP_URL}\n"
 	@printf "admin url: ${ADMIN_URL}\n"
 
