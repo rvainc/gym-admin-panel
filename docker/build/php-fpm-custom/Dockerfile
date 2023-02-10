@@ -1,6 +1,8 @@
 FROM php:8.1-fpm
 
+RUN curl -sL https://deb.nodesource.com/setup_16.x | sudo bash -
 RUN apt-get update && apt-get install -y \
+    nodejs \
     zip \
     libpq-dev \
     && apt-get clean \

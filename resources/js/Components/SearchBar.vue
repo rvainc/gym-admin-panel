@@ -3,18 +3,17 @@
         <div class="d-flex">
             <div class="input-group">
                 <input
-                    @keydown.enter="search"
                     v-model="searchInput"
                     type="text"
                     class="form-control"
                     placeholder="Пошук"
                     aria-label="Search"
+                    @keydown.enter="search"
                 >
-                <button @click="showBarCodeReader = true" class="btn btn-secondary" type="button"
-                        id="button-addon2">
+                <button id="button-addon2" class="btn btn-secondary" type="button" @click="showBarCodeReader = true">
                     <i class="fa-solid fa-barcode"></i>
                 </button>
-                <button @click="search" class="btn btn-secondary" type="button">
+                <button class="btn btn-secondary" type="button" @click="search">
                     <i class="fa-solid fa-magnifying-glass"></i>
                 </button>
             </div>

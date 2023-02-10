@@ -6,8 +6,17 @@
 @import "bootstrap/scss/functions";
 @import "bootstrap/scss/variables";
 
+$primary:    $indigo-500;
+$secondary:  $secondary;
+$success:    $success;
+$info:       $info;
+$warning:    $warning;
+$danger:     $orange-500;
+$light:      $light;
+$dark:       $dark;
+
 $theme-colors: (
-    "primary":    $indigo-500,
+    "primary":    $primary,
     "secondary":  $secondary,
     "success":    $success,
     "info":       $info,

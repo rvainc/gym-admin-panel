@@ -1,10 +1,9 @@
 <template>
     <vue-final-modal
-        v-model="show"
-        :z-index-base="1700"
-        @closed="v => $emit('closed', v)"
+        :model-value="show"
         :click-to-close="canClose"
-        classes="d-flex justify-content-center align-items-center"
+        @closed="emit('closed')"
+        class="d-flex justify-content-center align-items-center"
     >
         <bar-code-reader
             v-if="show"
@@ -19,14 +18,8 @@
 
 <script setup>
 import BarCodeReader from '@/Components/BarCodeReader.vue';
-import {VueFinalModal} from 'vue-final-modal';
 import {ref} from "vue";
-
-const canClose = ref(false);
-
-function setCanClose(value) {
-    canClose.value = value;
-}
+import {VueFinalModal} from "vue-final-modal";
 
 const props = defineProps({
     show: {
@@ -34,5 +27,15 @@ const props = defineProps({
         default: false,
     }
 });
-defineEmits(['closed'])
+
+const canClose = ref(false);
+
+function setCanClose(value) {
+    canClose.value = value;
+}
+
+const emit = defineEmits([
+    'closed',
+    'decode',
+])
 </script>

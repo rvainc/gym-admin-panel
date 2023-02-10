@@ -21,13 +21,13 @@
             </label>
         </div>
         <div v-if="subscriptions.data.length">
-            <table class="table table-hover mt-3 w-100">
+            <table class="table table-hover mt-3 w-100 align-middle">
                 <thead>
                 <tr>
                     <th scope="col" style="width: 1%">#</th>
                     <th scope="col">Назва</th>
-                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Тривалість</th>
-                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Ціна</th>
+                    <th scope="col" class="d-none d-md-table-cell">Тривалість</th>
+                    <th scope="col" class="d-none d-md-table-cell">Ціна</th>
                     <th scope="col" style="width: 1%">Дії</th>
                 </tr>
                 </thead>
@@ -37,40 +37,34 @@
                     <td class="text-truncate" style="max-width: 0">
                         <div>{{ subscription.data.title }}</div>
                         <div class="d-md-none">{{ subscription.data.days }} днів</div>
-                        <div class="d-md-none">{{ subscription.data.display_price }} грн</div>
+                        <div class="d-md-none">{{ subscription.data.display_price.toFixed(2) }} грн</div>
                     </td>
                     <td class="d-none d-md-table-cell">{{ subscription.data.days }} днів</td>
-                    <td class="d-none d-md-table-cell">{{ subscription.data.display_price }} грн</td>
+                    <td class="d-none d-md-table-cell">{{ subscription.data.display_price.toFixed(2) }} грн</td>
                     <td class="text-nowrap text-end">
-                        <i
-                            v-if="subscription.data.deleted_at"
-                            @click="$inertia.post(subscription.links.restore_url)"
-                            class="fa-solid fa-reply link-secondary"
-                            type="button"
-                        ></i>
+                        <div class="btn-group btn-group-sm" v-if="subscription.data.deleted_at">
+                            <button class="btn btn-secondary" @click="$inertia.post(subscription.links.restore_url)">
+                                <i class="fa-solid fa-reply"></i>
+                            </button>
+                        </div>
                         <span v-else>
-                            <Link :href="subscription.links.edit_url" class="me-2 link-secondary">
-                                <i class="fa-solid fa-pen-to-square"></i>
-                            </Link>
-                            <span @click="$inertia.delete(subscription.links.delete_url)" type="button">
-                                <i class="fa-solid fa-trash-can link-danger link-secondary"></i>
+                            <span class="btn-group btn-group-sm">
+                                <Link :href="subscription.links.edit_url" class="btn btn-secondary">
+                                    <i class="fa-solid fa-pen-to-square"></i>
+                                </Link>
+                                <button
+                                    @click="$inertia.delete(subscription.links.delete_url)"
+                                    class="btn btn-danger"
+                                >
+                                    <i class="fa-solid fa-trash-can"></i>
+                                </button>
                             </span>
                         </span>
                     </td>
                 </tr>
                 </tbody>
             </table>
-            <nav aria-label="Page navigation example">
-                <ul class="pagination">
-                    <li
-                        v-for="item in subscriptions.meta.links"
-                        class="page-item"
-                        :class="{disabled: item.active}"
-                    >
-                        <Link class="page-link" :href="item.url" v-html="item.label"/>
-                    </li>
-                </ul>
-            </nav>
+            <pagination :links="subscriptions.meta.links"/>
         </div>
         <div class="text-center h5 p-5" v-else>
             Жодного запису не знайдено.
@@ -84,17 +78,17 @@
 <script setup>
 import AuthenticatedLayout from '@/Layouts/Admin/AuthenticatedLayout.vue';
 import {Link, usePage} from "@inertiajs/inertia-vue3";
-import {computed, ref} from "vue";
 import {Inertia} from "@inertiajs/inertia";
-
-const props = defineProps([
-    'subscriptions',
-    'showDeleted'
-]);
+import Pagination from "@/Components/Pagination.vue";
 
 function toggleShowDeleted() {
     Inertia.get(usePage().url.value, {
         show_deleted: props.showDeleted ? '0' : '1',
     });
 }
+
+const props = defineProps([
+    'subscriptions',
+    'showDeleted'
+]);
 </script>

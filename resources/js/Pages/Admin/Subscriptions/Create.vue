@@ -34,8 +34,9 @@
                     </div>
                 </div>
             </div>
-
-            <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
+            <div class="d-flex justify-content-md-start mb-1">
+                <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
+            </div>
         </form>
     </authenticated-layout>
     <bar-code-reader-modal :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>

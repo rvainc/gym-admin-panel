@@ -62,7 +62,7 @@ const props = defineProps([
 const form = useForm({
     title: props.subscription.data.title,
     days: props.subscription.data.days,
-    price: props.subscription.data.display_price,
+    price: props.subscription.data.display_price.toFixed(2),
 });
 </script>
 

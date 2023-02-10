@@ -39,11 +39,14 @@
                     </div>
                 </div>
             </div>
-
             <button type="submit" class="btn btn-primary" :disabled="form.processing">Зберегти</button>
         </form>
     </authenticated-layout>
-    <bar-code-reader-modal :show="showBarCodeReader" @closed="showBarCodeReader = false" @decode="onDecode"/>
+    <bar-code-reader-modal
+        :show="showBarCodeReader"
+        @closed="showBarCodeReader = false"
+        @decode="onDecode"
+    />
 </template>
 
 <script setup>

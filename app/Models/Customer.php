@@ -6,6 +6,7 @@ use App\Traits\SmartSearch;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
@@ -37,6 +38,24 @@ class Customer extends Model
         'last_name',
         'card_number',
     ];
+
+    /**
+     * @return HasMany|Transaction
+     */
+    public function transactions()
+    {
+        return $this->hasMany(Transaction::class);
+    }
+
+    /**
+     * @return HasMany|Transaction
+     */
+    public function active_transactions()
+    {
+        return tap($this->transactions(), function (HasMany|Transaction $relation) {
+            $relation->active();
+        });
+    }
 
     /**
      * @param Builder|Customer $builder

@@ -1,5 +1,5 @@
 <template>
-    <div v-bind="$attrs" role="alert">
+    <div v-bind="$attrs" role="alert" :title="message.text">
         {{ message.text }}
     </div>
 </template>

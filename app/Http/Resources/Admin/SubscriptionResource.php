@@ -2,14 +2,14 @@
 
 namespace App\Http\Resources\Admin;
 
+use App\Http\Resources\BaseJsonResource;
 use App\Models\Subscription;
 use Illuminate\Http\Request;
-use Illuminate\Http\Resources\Json\JsonResource;
 
 /**
  * @property Subscription $resource
  */
-class SubscriptionResource extends JsonResource
+class SubscriptionResource extends BaseJsonResource
 {
     /**
      * Transform the resource into an array.

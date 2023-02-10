@@ -1,6 +1,6 @@
 <template>
     <Link :href="route('admin.index')">
-        <img src="../../images/usa-logo.png" style="object-fit: contain; height: 75px">
+        <img src="../../images/usa-logo.png" style="object-fit: contain; height: 75px" alt="logo">
     </Link>
 </template>
 

@@ -13,8 +13,7 @@ up:
 	@docker compose up -d
 	@sleep 1
 	@clear
-	@printf "client url: ${APP_URL}\n"
-	@printf "admin url: ${ADMIN_URL}\n"
+	@printf " -> client url: ${APP_URL}\n -> admin url: ${ADMIN_URL}\n"
 
 down:
 	@docker compose down
@@ -34,3 +33,6 @@ exec-node:
 
 run-node:
 	@docker compose run node bash
+
+ssr:
+	docker compose exec php php artisan inertia:start-ssr

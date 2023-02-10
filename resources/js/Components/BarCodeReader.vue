@@ -114,5 +114,6 @@ const emit = defineEmits([
     'loading',
     'loaded',
     'error',
+    'closed',
 ])
 </script>

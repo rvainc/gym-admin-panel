@@ -16,7 +16,7 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->foreignId('customer_id')->index();
-            $table->foreignId('subscription_id')->index();
+            $table->foreignId('subscription_id')->index()->nullable();
             $table->integer('amount');
             $table->timestamp('start_at');
             $table->timestamp('ends_at');
@@ -26,10 +26,11 @@ return new class extends Migration
                 ->references('id')
                 ->on('customers')
                 ->onDelete('cascade');
+
             $table->foreign('subscription_id')
                 ->references('id')
                 ->on('subscriptions')
-                ->onDelete('cascade');
+                ->onDelete('set null');
         });
     }
 
