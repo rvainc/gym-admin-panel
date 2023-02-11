@@ -64,7 +64,7 @@
                 </tr>
                 </tbody>
             </table>
-            <pagination :links="subscriptions.meta.links"/>
+            <pagination :model="subscriptions"/>
         </div>
         <div class="text-center h5 p-5" v-else>
             Жодного запису не знайдено.

@@ -77,7 +77,7 @@
             </div>
             <div v-if="transactions.data.length">
                 <transactions-table :transactions="transactions"/>
-                <pagination :links="transactions.meta.links"/>
+                <pagination :model="transactions"/>
             </div>
             <div v-else class="text-center h6 p-3">
                 Жодного запису в цього клієнта не знайдено.

@@ -5,7 +5,7 @@
         </div>
         <div v-if="transactions.data.length" class="mt-3">
             <transactions-table :transactions="transactions"/>
-            <pagination :links="transactions.meta.links"/>
+            <pagination :model="transactions"/>
         </div>
         <div v-else class="text-center h5 p-5">
             Жодного запису не знайдено.

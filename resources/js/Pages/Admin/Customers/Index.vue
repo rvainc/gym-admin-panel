@@ -95,7 +95,7 @@
                 </tr>
                 </tbody>
             </table>
-            <pagination :links="customers.meta.links"/>
+            <pagination :model="customers"/>
         </div>
         <div v-else class="text-center h5 p-5">
             Жодного запису не знайдено.
