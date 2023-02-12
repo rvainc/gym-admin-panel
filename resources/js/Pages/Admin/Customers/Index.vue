@@ -38,61 +38,73 @@
         <div v-if="customers.data.length">
             <table class="table table-hover mt-3 w-100 align-middle">
                 <thead>
-                <tr>
-                    <th scope="col" style="width: 1%">#</th>
-                    <th scope="col">
-                        <div>Клієнт</div>
-                    </th>
-                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Телефон</th>
-                    <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Номер картки</th>
-                    <th scope="col" class="d-none d-md-table-cell text-center" style="width: 20%">Проплачено</th>
-                    <th scope="col" style="width: 1%">Дії</th>
-                </tr>
+                    <tr>
+                        <th scope="col" style="width: 1%">#</th>
+                        <th scope="col">
+                            <div>Клієнт</div>
+                        </th>
+                        <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Телефон</th>
+                        <th scope="col" class="d-none d-md-table-cell" style="width: 20%">Номер картки</th>
+                        <th scope="col" class="d-none d-md-table-cell text-center" style="width: 20%">Проплачено</th>
+                        <th scope="col" style="width: 1%">Дії</th>
+                    </tr>
                 </thead>
                 <tbody>
-                <tr class="table-rov" v-for="customer in customers.data" :key="customer.data.id">
-                    <td>{{ customer.data.id }}</td>
-                    <td class="text-truncate" style="max-width: 0">
-                        <div>{{ customer.data.full_name }}</div>
-                        <div class="d-md-none">{{ customer.data.phone_number }}</div>
-                        <div class="d-md-none">
-                            <i
-                                v-if="customer.data.card_number"
-                                class="fa-solid fa-credit-card text-secondary me-2 text-truncate"
-                            ></i>
-                            <div class="w-100 text-truncate">{{ customer.data.card_number }}</div>
-                        </div>
-                    </td>
-                    <td class="d-none d-md-table-cell">{{ customer.data.phone_number }}</td>
-                    <td class="d-none d-md-table-cell">{{ customer.data.card_number || '-' }}</td>
-                    <td class="d-none d-md-table-cell text-center">
-                        <i v-if="customer.data.active_transactions_exists" class="fa-solid fa-check check"></i>
-                        <i v-else class="fa-solid fa-xmark xmark"></i>
-                    </td>
-                    <td class="text-nowrap text-end">
-                        <div v-if="customer.data.deleted_at" class="btn-group btn-group-sm">
-                            <button class="btn btn-secondary" @click="$inertia.post(customer.links.restore_url)">
-                                <i class="fa-solid fa-reply"></i>
-                            </button>
-                        </div>
-                        <span v-else>
-                            <span class="btn-group btn-group-sm">
-                                <Link :href="customer.links.edit_url" class="btn btn-secondary">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                </Link>
-                                <Link :href="customer.links.show_url" class="btn btn-secondary">
-                                   <i class="fa-solid fa-eye"></i>
-                                </Link>
-                                <button
-                                    class="btn btn-danger"
-                                    @click="$inertia.delete(customer.links.delete_url)"
-                                >
-                                    <i class="fa-solid fa-trash"></i>
+                    <tr class="table-rov" v-for="customer in customers.data" :key="customer.data.id">
+                        <td>{{ customer.data.id }}</td>
+                        <td style="max-width: 0">
+                            <div class="d-flex align-items-center">
+                                <i
+                                    class="fa-solid fa-circle fa-2xs d-md-none me-2"
+                                    :class="{
+                                    'text-success': customer.data.active_transactions_exists,
+                                    'text-danger': !customer.data.active_transactions_exists,
+                                }"
+                                ></i>
+                                <div class="text-truncate">{{ customer.data.full_name }}</div>
+                            </div>
+                            <div class="d-md-none d-flex align-items-center">
+                                <i class="fa-solid fa-phone me-2 text-secondary"></i>
+                                <div class="w-100 text-truncate">{{ customer.data.phone_number }}</div>
+                            </div>
+                            <div class="d-md-none d-flex align-items-center">
+                                <i
+                                    v-if="customer.data.card_number"
+                                    class="fa-solid fa-credit-card text-secondary me-2"
+                                ></i>
+                                <div class="w-100 text-truncate">{{ customer.data.card_number }}</div>
+                            </div>
+                        </td>
+                        <td class="d-none d-md-table-cell">{{ customer.data.phone_number }}</td>
+                        <td class="d-none d-md-table-cell">{{ customer.data.card_number || '-' }}</td>
+                        <td class="d-none d-md-table-cell text-center">
+                            <i v-if="customer.data.active_transactions_exists" class="fa-solid fa-check check"></i>
+                            <i v-else class="fa-solid fa-xmark xmark"></i>
+                        </td>
+                        <td class="text-nowrap text-end">
+                            <div v-if="customer.data.deleted_at" class="btn-group btn-group-sm">
+                                <button class="btn btn-secondary" @click="$inertia.post(customer.links.restore_url)">
+                                    <i class="fa-solid fa-reply"></i>
                                 </button>
+                            </div>
+                            <span v-else>
+                                <span class="btn-group btn-group-sm">
+                                    <Link :href="customer.links.edit_url" class="btn btn-secondary">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                    </Link>
+                                    <Link :href="customer.links.show_url" class="btn btn-secondary">
+                                       <i class="fa-solid fa-eye"></i>
+                                    </Link>
+                                    <button
+                                        class="btn btn-danger"
+                                        @click="$inertia.delete(customer.links.delete_url)"
+                                    >
+                                        <i class="fa-solid fa-trash"></i>
+                                    </button>
+                                </span>
                             </span>
-                        </span>
-                    </td>
-                </tr>
+                        </td>
+                    </tr>
                 </tbody>
             </table>
             <pagination :model="customers"/>

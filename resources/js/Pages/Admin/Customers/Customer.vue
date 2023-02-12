@@ -8,7 +8,7 @@
                 <table class="w-100">
                     <tr>
                         <th style="width: 30%"></th>
-                        <th style=""></th>
+                        <th></th>
                     </tr>
                     <tr>
                         <td>
@@ -52,7 +52,7 @@
                     </tr>
                 </table>
             </div>
-            <div class="col-12 col-md-6 mt-2 mt-sm-0 text-md-end text-sm-center">
+            <div class="col-12 col-md-6 mt-2 mt-sm-0 text-md-end text-start">
                 <div class="btn-group" role="group">
                     <Link :href="customer.links.edit_url" class="btn btn-secondary">
                         <i class="fa-solid fa-pen-to-square"></i>
@@ -75,7 +75,7 @@
                     </Link>
                 </div>
             </div>
-            <div v-if="transactions.data.length">
+            <div v-if="transactions.data.length" class="mt-3">
                 <transactions-table :transactions="transactions"/>
                 <pagination :model="transactions"/>
             </div>

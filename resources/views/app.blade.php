@@ -14,8 +14,20 @@
         @vite(['resources/js/app.js', "resources/js/Pages/{$page['component']}.vue"])
         @inertiaHead
     </head>
-    <body class="font-sans antialiased" style="background-color: #fbfafe;">
+    <body style="background-color: #fbfafe;">
         @inertia
+        <noscript>
+            <h1
+                style="display: flex;
+                justify-content: center;
+                margin-top: 7vw;
+                margin-left: 3vw;
+                margin-right: 3vw;
+                color: #504e4e;"
+            >
+                Упс... Здається ваш пристрій застарілий для використання цього сайту.
+            </h1>
+        </noscript>
     </body>
 </html>
 
