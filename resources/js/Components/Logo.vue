@@ -1,7 +1,5 @@
 <template>
-    <Link :href="route('admin.index')">
-        <img src="../../images/usa-logo.png" style="object-fit: contain; height: 75px" alt="logo">
-    </Link>
+    <img src="../../../public/usa-logo.jpg" style="object-fit: contain;" v-bind="$attrs" alt="logo">
 </template>
 
 <script>
@@ -14,7 +12,3 @@ export default {
     }
 }
 </script>
-
-<style scoped>
-
-</style>

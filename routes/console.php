@@ -18,8 +18,8 @@ Artisan::command('inspire', function () {
     $this->comment(Inspiring::quote());
 })->purpose('Display an inspiring quote');
 
-//Artisan::command('fill:fake', function () {
-//    for ($i = 1; $i <= 200; $i++) {
-//
-//    }
-//});
+Artisan::command('test:it', function () {
+    dump(
+        \App\Models\Transaction::factory()->make()->toArray()
+    );
+});

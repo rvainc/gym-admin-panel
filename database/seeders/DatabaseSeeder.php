@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Subscription;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -20,5 +21,27 @@ class DatabaseSeeder extends Seeder
         //     'name' => 'Test User',
         //     'email' => 'test@example.com',
         // ]);
+
+        $items = [
+            [
+                'title' => '1 місяць',
+                'days' => 30,
+                'price' => 50000,
+            ],
+            [
+                'title' => '1 день',
+                'days' => 1,
+                'price' => 7000,
+            ],
+            [
+                'title' => '15 днів',
+                'days' => 15,
+                'price' => 30000,
+            ],
+        ];
+
+        foreach ($items as $item) {
+            Subscription::factory()->create($item);
+        }
     }
 }

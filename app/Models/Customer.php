@@ -24,7 +24,7 @@ use Illuminate\Support\Carbon;
  * Scopes
  * @method Builder|$this smartSearch(string $value)
  */
-class Customer extends Model
+class Customer extends BaseModel
 {
     use HasFactory,
         SmartSearch,

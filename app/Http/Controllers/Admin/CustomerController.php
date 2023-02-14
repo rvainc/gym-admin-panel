@@ -35,7 +35,7 @@ class CustomerController extends Controller
             ->when($request->input('search'), function (Customer|Builder $builder, $value) {
                 return $builder->smartSearch($value);
             })
-            ->paginate(15)
+            ->paginate(30)
             ->withQueryString();
 
         $labels = [];

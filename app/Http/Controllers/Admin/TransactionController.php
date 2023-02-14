@@ -27,7 +27,7 @@ class TransactionController extends Controller
             ->with('subscription', fn($query) => $query->withTrashed())
             ->with('customer', fn($query) => $query->withTrashed())
             ->latest()
-            ->paginate(15);
+            ->paginate(50);
 
         return Inertia::render('Admin/Transactions/Index', [
             'transactions' => TransactionResource::collection($transactions),
