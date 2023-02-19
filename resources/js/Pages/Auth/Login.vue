@@ -1,14 +1,57 @@
+<template>
+    <GuestLayout title="Вхід">
+        <form @submit.prevent="submit">
+            <div class="mb-3">
+                <label for="firstNameInput" class="form-label">Електронна пошта</label>
+                <input
+                    type="email"
+                    class="form-control"
+                    :class="{'is-invalid': form.errors.email}"
+                    id="firstNameInput"
+                    v-model="form.email"
+                >
+                <input-error :message="form.errors.email"></input-error>
+            </div>
+            <div class="mb-3">
+                <label for="lastNameInput" class="form-label">Пароль</label>
+                <input
+                    type="password"
+                    class="form-control"
+                    :class="{'is-invalid': form.errors.password}"
+                    id="lastNameInput"
+                    v-model="form.password"
+                >
+                <input-error :message="form.errors.password"></input-error>
+            </div>
+            <div class="form-check mt-4">
+                <input class="form-check-input" type="checkbox" v-model="form.remember">
+                <label class="form-check-label" for="flexCheckDefault">
+                    Запам'ятати мене
+                </label>
+            </div>
+            <div class="d-flex align-items-center justify-content-between mt-4">
+                <Link v-if="canResetPassword" :href="route('password.request')"
+                      class="btn btn-link">
+                    Забули пароль?
+                </Link>
+                <button class="btn btn-primary" :class="{ disabled: form.processing }">
+                    Увійти
+                </button>
+            </div>
+        </form>
+    </GuestLayout>
+</template>
+
 <script setup>
-import Checkbox from '@/Components/Checkbox.vue';
-import GuestLayout from '@/Layouts/GuestLayout.vue';
+import GuestLayout from '@/Layouts/Admin/GuestLayout.vue';
 import InputError from '@/Components/Inputs/InputError.vue';
-import InputLabel from '@/Components/Inputs/InputLabel.vue';
-import PrimaryButton from '@/Components/Buttons/PrimaryButton.vue';
-import TextInput from '@/Components/Inputs/TextInput.vue';
-import { Head, Link, useForm } from '@inertiajs/inertia-vue3';
+import {Link, useForm} from '@inertiajs/inertia-vue3';
 
 defineProps({
-    canResetPassword: Boolean,
+    canResetPassword: {
+        type: Boolean,
+        default: true,
+    },
     status: String,
 });
 
@@ -24,44 +67,3 @@ const submit = () => {
     });
 };
 </script>
-
-<template>
-    <GuestLayout>
-        <Head title="Log in" />
-
-        <div v-if="status" class="mb-4 font-medium text-sm text-green-600">
-            {{ status }}
-        </div>
-
-        <form @submit.prevent="submit">
-            <div>
-                <InputLabel for="email" value="Email" />
-                <TextInput id="email" type="email" class="mt-1 block w-full" v-model="form.email" required autofocus autocomplete="username" />
-                <InputError class="mt-2" :message="form.errors.email" />
-            </div>
-
-            <div class="mt-4">
-                <InputLabel for="password" value="Password" />
-                <TextInput id="password" type="password" class="mt-1 block w-full" v-model="form.password" required autocomplete="current-password" />
-                <InputError class="mt-2" :message="form.errors.password" />
-            </div>
-
-            <div class="block mt-4">
-                <label class="flex items-center">
-                    <Checkbox name="remember" v-model:checked="form.remember" />
-                    <span class="ml-2 text-sm text-gray-600">Remember me</span>
-                </label>
-            </div>
-
-            <div class="flex items-center justify-end mt-4">
-                <Link v-if="canResetPassword" :href="route('password.request')" class="underline text-sm text-gray-600 hover:text-gray-900">
-                    Forgot your password?
-                </Link>
-
-                <PrimaryButton class="ml-4" :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                    Log in
-                </PrimaryButton>
-            </div>
-        </form>
-    </GuestLayout>
-</template>

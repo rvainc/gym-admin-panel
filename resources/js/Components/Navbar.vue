@@ -1,7 +1,10 @@
 <template>
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary shadow shadow-lg fixed-top" style="opacity: 96%">
         <div class="container">
-            <Link class="navbar-brand" :href="route('admin.home')">Universal Sports Academy</Link>
+            <Link class="navbar-brand" :href="route('admin.home')">
+                Universal Sports Academy
+                <span class="badge text-bg-warning">beta</span>
+            </Link>
             <button
                 class="navbar-toggler"
                 type="button"
@@ -39,6 +42,17 @@
                         <ul class="dropdown-menu">
                             <li>
                                 <Link class="dropdown-item" :href="route('admin.subscriptions.index')">Підписки</Link>
+                            </li>
+                            <li>
+                                <Link class="dropdown-item" :href="route('admin.users.index')">Користувачі</Link>
+                            </li>
+                            <li>
+                                <Link class="dropdown-item d-flex align-items-center" method="post"  as="button" :href="route('logout')">
+                                    <div class="me-3">
+                                        Log out
+                                    </div>
+                                    <i class="fa-solid fa-right-from-bracket"></i>
+                                </Link>
                             </li>
                         </ul>
                     </li>

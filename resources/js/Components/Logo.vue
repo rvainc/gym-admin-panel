@@ -1,5 +1,5 @@
 <template>
-    <img src="../../../public/usa-logo.jpg" style="object-fit: contain;" v-bind="$attrs" alt="logo">
+    <img src="../../../public/usa-logo.png" style="object-fit: contain;" v-bind="$attrs" alt="logo">
 </template>
 
 <script>

@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TransactionStoreRequest;
+use App\Http\Requests\Admin\UserStoreRequest;
 use App\Http\Resources\Admin\CustomerResource;
 use App\Http\Resources\Admin\SubscriptionResource;
 use App\Http\Resources\Admin\TransactionResource;
 use App\Models\Customer;
 use App\Models\Subscription;
 use App\Models\Transaction;
+use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;

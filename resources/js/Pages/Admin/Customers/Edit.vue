@@ -6,14 +6,26 @@
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="firstNameInput" class="form-label">Ім'я</label>
-                        <input id="firstNameInput" v-model="form.first_name" type="text" class="form-control">
+                        <input
+                            id="firstNameInput"
+                            v-model="form.first_name"
+                            type="text"
+                            class="form-control"
+                            :class="{'is-invalid': form.errors.first_name}"
+                        >
                         <input-error :message="form.errors.first_name"></input-error>
                     </div>
                 </div>
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="lastNameInput" class="form-label">Прізвище</label>
-                        <input v-model="form.last_name" type="text" id="lastNameInput" class="form-control">
+                        <input
+                            v-model="form.last_name"
+                            type="text"
+                            id="lastNameInput"
+                            class="form-control"
+                            :class="{'is-invalid': form.errors.last_name}"
+                        >
                         <input-error :message="form.errors.last_name"></input-error>
                     </div>
                 </div>
@@ -22,7 +34,13 @@
                 <div class="col-12 col-md-6">
                     <div class="mb-3">
                         <label for="phoneNumberInput" class="form-label">Номер телефона</label>
-                        <input id="phoneNumberInput" v-model="form.phone_number" type="tel" class="form-control">
+                        <input
+                            id="phoneNumberInput"
+                            v-model="form.phone_number"
+                            type="tel"
+                            class="form-control"
+                            :class="{'is-invalid': form.errors.phone_number}"
+                        >
                         <input-error :message="form.errors.phone_number"></input-error>
                     </div>
                 </div>
@@ -30,7 +48,13 @@
                     <div class="mb-3">
                         <label class="form-label">Номер карти</label>
                         <div class="input-group">
-                            <input id="cardNumberInput" v-model="form.card_number" type="text" class="form-control">
+                            <input
+                                id="cardNumberInput"
+                                v-model="form.card_number"
+                                type="text"
+                                class="form-control"
+                                :class="{'is-invalid': form.errors.card_number}"
+                            >
                             <button class="btn btn-outline-secondary" @click.prevent="showBarCodeReader = true">
                                 <i class="fa-solid fa-barcode"></i>
                             </button>

@@ -91,6 +91,7 @@ class CustomerController extends Controller
             ->with('subscription', fn($query) => $query->withTrashed())
             ->with('customer', fn($query) => $query->withTrashed())
             ->where('customer_id','=', $customer->id)
+            ->latest()
             ->paginate(10);
 
         return Inertia::render('Admin/Customers/Customer', [

@@ -39,7 +39,7 @@ function search() {
     if (!_.isEmpty(searchInput.value)) {
         Inertia.visit(props.href, {
             method: props.method,
-            data: { search: searchInput.value },
+            data: { search: searchInput.value, page: 1 },
         });
     }
 }

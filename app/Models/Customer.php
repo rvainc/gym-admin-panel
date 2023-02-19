@@ -2,21 +2,23 @@
 
 namespace App\Models;
 
+use App\Enums\UserRole;
 use App\Traits\SmartSearch;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
  * @property integer $id
- * @property string $first_name
- * @property string $last_name
+ * @property string $name
+ * @property string $email
+ * @property UserRole $role
  * @property string $phone_number
  * @property string $card_number
  * @property string $image
+ * @property Carbon $email_verified_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at

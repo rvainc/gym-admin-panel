@@ -15,12 +15,15 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('customer_id')->index();
-            $table->foreignId('subscription_id')->index()->nullable();
+            $table->foreignId('customer_id');
+            $table->foreignId('subscription_id')->nullable();
             $table->integer('amount');
             $table->timestamp('start_at');
             $table->timestamp('ends_at');
             $table->timestamps();
+
+            $table->index(['customer_id']);
+            $table->index(['subscription_id']);
 
             $table->foreign('customer_id')
                 ->references('id')

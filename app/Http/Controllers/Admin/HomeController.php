@@ -3,16 +3,18 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Inertia\Inertia;
-use Inertia\Response;
+use Illuminate\Contracts\Foundation\Application;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Redirect;
 
 class HomeController extends Controller
 {
     /**
-     * @return Response
+     * @return Application|RedirectResponse|Redirector
      */
     public function index()
     {
-        return Inertia::render('Admin/Dashboard');
+        return Redirect::route('admin.customers.index');
     }
 }

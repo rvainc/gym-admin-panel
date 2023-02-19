@@ -32,7 +32,7 @@ class CustomerResource extends BaseJsonResource
             'links' => [
                 'show_url' => route('admin.customers.show', ['customer' => $this->resource->id]),
                 'edit_url' => route('admin.customers.edit', ['customer' => $this->resource->id]),
-                'delete_url' => route('admin.customers.delete', ['customer' => $this->resource->id]),
+                'delete_url' => route('admin.customers.destroy', ['customer' => $this->resource->id]),
                 'restore_url' => route('admin.customers.restore', ['customer' => $this->resource->id]),
             ]
         ];

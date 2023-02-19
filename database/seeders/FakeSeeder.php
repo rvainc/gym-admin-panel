@@ -6,7 +6,8 @@ use App\Models\Customer;
 use App\Models\Transaction;
 use Illuminate\Database\Seeder;
 
-class FakeSeeder extends Seeder
+class
+FakeSeeder extends Seeder
 {
     /**
      * Run the database seeds.
@@ -15,8 +16,8 @@ class FakeSeeder extends Seeder
      */
     public function run()
     {
-        Customer::factory(1000)
-            ->has(Transaction::factory()->count(50))
+        Customer::factory(200)
+            ->has(Transaction::factory()->count(5))
             ->create();
     }
 }

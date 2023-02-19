@@ -4,7 +4,9 @@ namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use App\Models\Subscription;
+use App\Models\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Str;
 
 class DatabaseSeeder extends Seeder
 {
@@ -43,5 +45,13 @@ class DatabaseSeeder extends Seeder
         foreach ($items as $item) {
             Subscription::factory()->create($item);
         }
+        User::factory()->create([
+            'name' => 'admin',
+            'email' => 'rudvamailbox@gmail.com',
+            'email_verified_at' => null,
+            'role' => 1,
+            'password' => bcrypt('331832'),
+            'remember_token' => Str::random(10),
+        ]);
     }
 }
