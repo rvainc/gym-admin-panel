@@ -9,6 +9,10 @@ import { ZiggyVue } from '../../vendor/tightenco/ziggy/dist/vue.m';
 import 'vue-select/dist/vue-select.css';
 import { createVfm } from 'vue-final-modal';
 
+import.meta.glob([
+    '../images/**',
+]);
+
 const appName = window.document.getElementsByTagName('title')[0]?.innerText || 'Universal Sports Academy';
 
 createInertiaApp({

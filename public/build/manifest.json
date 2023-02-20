@@ -1,19 +1,31 @@
 {
-  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
-    "file": "assets/fa-solid-900.8f06540f.woff2",
-    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
+  "resources/images/favicon-16x16.png": {
+    "file": "assets/favicon-16x16.169ba96d.png",
+    "src": "resources/images/favicon-16x16.png"
+  },
+  "resources/images/favicon-32x32.png": {
+    "file": "assets/favicon-32x32.3f109c3b.png",
+    "src": "resources/images/favicon-32x32.png"
+  },
+  "resources/images/favicon.ico": {
+    "file": "assets/favicon.62eee943.ico",
+    "src": "resources/images/favicon.ico"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2": {
     "file": "assets/fa-brands-400.c61287c2.woff2",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.woff2"
   },
-  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
-    "file": "assets/fa-solid-900.e4f6a7e9.ttf",
-    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2": {
+    "file": "assets/fa-solid-900.8f06540f.woff2",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.woff2"
   },
   "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf": {
     "file": "assets/fa-brands-400.b1d1c1b0.ttf",
     "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-brands-400.ttf"
+  },
+  "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf": {
+    "file": "assets/fa-solid-900.e4f6a7e9.ttf",
+    "src": "node_modules/@fortawesome/fontawesome-free/webfonts/fa-solid-900.ttf"
   },
   "resources/js/app.js": {
     "file": "assets/app.1406f759.js",
@@ -397,6 +409,10 @@
       "resources/js/app.js"
     ]
   },
+  "resources/js/Pages/Admin/Customers/Index.css": {
+    "file": "assets/Index.3d0cbbcd.css",
+    "src": "resources/js/Pages/Admin/Customers/Index.css"
+  },
   "TransactionsTable.css": {
     "file": "assets/TransactionsTable.b90e2347.css",
     "src": "TransactionsTable.css"
@@ -405,17 +421,13 @@
     "file": "assets/Create.283cfff1.css",
     "src": "resources/js/Pages/Admin/Subscriptions/Create.css"
   },
-  "resources/js/Pages/Admin/Subscriptions/Edit.css": {
-    "file": "assets/Edit.8b299b26.css",
-    "src": "resources/js/Pages/Admin/Subscriptions/Edit.css"
-  },
-  "resources/js/Pages/Admin/Customers/Index.css": {
-    "file": "assets/Index.3d0cbbcd.css",
-    "src": "resources/js/Pages/Admin/Customers/Index.css"
-  },
   "resources/js/Pages/Admin/Transactions/Create.css": {
     "file": "assets/Create.77ebf614.css",
     "src": "resources/js/Pages/Admin/Transactions/Create.css"
+  },
+  "resources/js/Pages/Admin/Subscriptions/Edit.css": {
+    "file": "assets/Edit.8b299b26.css",
+    "src": "resources/js/Pages/Admin/Subscriptions/Edit.css"
   },
   "resources/js/app.css": {
     "file": "assets/app.103760a8.css",
