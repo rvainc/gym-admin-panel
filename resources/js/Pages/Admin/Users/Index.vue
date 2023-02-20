@@ -18,17 +18,26 @@
                 <tr>
                     <th scope="col" style="width: 1%">#</th>
                     <th scope="col">Користувач</th>
-                    <th scope="col">Електронна пошта</th>
-                    <th scope="col">Роль</th>
-                    <th scope="col" style="width: 1%">Дії</th>
+                    <th scope="col" class="d-none d-md-table-cell">Електронна пошта</th>
+                    <th scope="col" class="d-none d-md-table-cell">Роль</th>
+                    <th scope="col"  style="width: 1%">Дії</th>
                 </tr>
                 </thead>
                 <tbody>
                 <tr class="table-rov" v-for="user in users.data" :key="user.data.id">
                     <td>{{ user.data.id }}</td>
-                    <td>{{ user.data.name || '-' }}</td>
-                    <td>{{ user.data.email || '-' }}</td>
-                    <td>{{ user.data.role_text || '-' }}</td>
+                    <td style="max-width: 0">
+                        <div class="text-truncate">
+                            <i class="fa-solid fa-user d-md-none"></i>
+                            {{ user.data.name || '-' }}
+                        </div>
+                        <div class="text-truncate d-md-none">
+                            <i class="fa-solid fa-envelope"></i>
+                            {{ user.data.email || '-' }}
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">{{ user.data.email || '-' }}</td>
+                    <td class="d-none d-md-table-cell">{{ user.data.role_text || '-' }}</td>
                     <td>
                         <span class="btn-group btn-group-sm">
                             <Link

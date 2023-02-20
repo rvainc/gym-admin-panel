@@ -24,7 +24,7 @@ use Laravel\Sanctum\HasApiTokens;
  *
  * @method static static|Builder query()
  */
-class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable
 {
     use
         HasApiTokens,

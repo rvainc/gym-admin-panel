@@ -2,7 +2,7 @@
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary shadow shadow-lg fixed-top" style="opacity: 96%">
         <div class="container">
             <Link class="navbar-brand" :href="route('admin.home')">
-                Universal Sports Academy
+                USAcademy
                 <span class="badge text-bg-warning">beta</span>
             </Link>
             <button
