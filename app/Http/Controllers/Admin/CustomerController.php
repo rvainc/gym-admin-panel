@@ -107,7 +107,11 @@ class CustomerController extends Controller
      */
     public function update(CustomerUpdateRequest $request, Customer $customer)
     {
-        $customer->fill($request->validated())->save();
+        $customer->fill($request->validated());
+        $customer->phone_number = PhoneNumber::make($request->validated('phone_number'), ['AUTO', 'UA'])
+            ->formatE164();
+
+        $customer->save();
 
         return Redirect::route('admin.customers.show', ['customer' => $customer->id]);
     }
