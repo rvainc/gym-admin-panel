@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Клієнти">
         <div class="mb-3 mb-md-5">
             <search-bar
                 :href="$page.url"

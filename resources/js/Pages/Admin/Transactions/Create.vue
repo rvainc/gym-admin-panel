@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Оплата">
         <div class="h5 mb-4 text-truncate">
             Провести транзакцію для
             <Link :href="customer.links.show_url">{{ customer.data.first_name }}</Link>

@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Редагувати користувача">
         <div class="h5 mb-4">Редагувати користувача</div>
         <UserForm
             :url="route('admin.users.update', {user: user.data.id})"

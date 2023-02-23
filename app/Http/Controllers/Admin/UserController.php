@@ -32,7 +32,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        $users = User::query()->paginate(15);
+        $users = User::query()->paginate(10);
 
         return Inertia::render('Admin/Users/Index', [
             'users' => UserResource::collection($users),

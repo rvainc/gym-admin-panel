@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Створити підписку">
         <div class="h5 mb-4">Створити підписку</div>
         <form @submit.prevent="form.post(route('admin.subscriptions.store'))">
             <div class="row">

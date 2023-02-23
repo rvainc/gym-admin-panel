@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Підписки">
         <div class="d-flex align-auto align-items-center">
             <div class="h4 m-0 me-auto">Підписки</div>
             <div>

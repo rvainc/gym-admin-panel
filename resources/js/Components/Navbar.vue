@@ -2,8 +2,7 @@
     <nav class="navbar navbar-dark navbar-expand-lg bg-primary shadow shadow-lg fixed-top" style="opacity: 96%">
         <div class="container">
             <Link class="navbar-brand" :href="route('admin.home')">
-                USAcademy
-                <span class="badge text-bg-warning">beta</span>
+                Usacademy.club
             </Link>
             <button
                 class="navbar-toggler"
@@ -26,6 +25,14 @@
                         <Link class="nav-link active" aria-current="page" :href="route('admin.transactions.index')">
                             Транзакції
                         </Link>
+                    </li>
+                </ul>
+                <ul class="navbar-nav flex-row flex-wrap">
+                    <li class="nav-item">
+                        <div class="d-flex align-items-center nav-link">
+                            <i class="fa-solid fa-user me-2"></i>
+                            <div class="me-2">{{ $page.props.auth.user.name }}</div>
+                        </div>
                     </li>
                 </ul>
                 <ul class="navbar-nav flex-row flex-wrap">

@@ -35,7 +35,7 @@ class CustomerController extends Controller
             ->when($request->input('search'), function (Customer|Builder $builder, $value) {
                 return $builder->smartSearch($value);
             })
-            ->paginate(30)
+            ->paginate(10)
             ->withQueryString();
 
         $labels = [];
@@ -92,7 +92,7 @@ class CustomerController extends Controller
             ->with('customer', fn($query) => $query->withTrashed())
             ->where('customer_id','=', $customer->id)
             ->latest()
-            ->paginate(10);
+            ->paginate(5);
 
         return Inertia::render('Admin/Customers/Customer', [
             'customer' => CustomerResource::make($customer),

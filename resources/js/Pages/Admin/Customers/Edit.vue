@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Редагувати клієнта">
         <div class="h5 mb-4">Редагувати клієнта</div>
         <form @submit.prevent="form.patch(route('admin.customers.update', customer.data.id))">
             <div class="row">

@@ -4,14 +4,12 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\TransactionStoreRequest;
-use App\Http\Requests\Admin\UserStoreRequest;
 use App\Http\Resources\Admin\CustomerResource;
 use App\Http\Resources\Admin\SubscriptionResource;
 use App\Http\Resources\Admin\TransactionResource;
 use App\Models\Customer;
 use App\Models\Subscription;
 use App\Models\Transaction;
-use App\Models\User;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
@@ -29,7 +27,7 @@ class TransactionController extends Controller
             ->with('subscription', fn($query) => $query->withTrashed())
             ->with('customer', fn($query) => $query->withTrashed())
             ->latest()
-            ->paginate(50);
+            ->paginate(20);
 
         return Inertia::render('Admin/Transactions/Index', [
             'transactions' => TransactionResource::collection($transactions),

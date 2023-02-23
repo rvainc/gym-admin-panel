@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Cтворити клієнта">
         <div class="h5 mb-4">Створити клієнта</div>
         <form @submit.prevent="form.post(route('admin.customers.store'))">
             <div class="row">

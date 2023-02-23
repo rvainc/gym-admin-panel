@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Транзакція">
         <div class="d-flex align-auto align-items-center">
             <div class="h4 me-auto">Транзакція #{{transaction.data.id}}</div>
         </div>

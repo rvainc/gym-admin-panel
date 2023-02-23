@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Створити користувача">
         <div class="h5 mb-4">Створити користувача</div>
         <UserForm
             :url="route('admin.users.store')"

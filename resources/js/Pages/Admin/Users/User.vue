@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout>
+    <authenticated-layout title="Користувач">
         <div class="d-flex align-auto align-items-center">
             <div class="h4 me-auto">Користувач</div>
         </div>

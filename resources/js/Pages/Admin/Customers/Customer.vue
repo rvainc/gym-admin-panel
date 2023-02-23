@@ -1,5 +1,5 @@
 <template>
-    <authenticated-layout :title=" 'Клієнт - ' + customer.data.full_name ">
+    <authenticated-layout :title="customer.data.full_name">
         <div class="d-flex align-auto align-items-center">
             <div class="h4 me-auto">{{customer.data.full_name}}</div>
         </div>
