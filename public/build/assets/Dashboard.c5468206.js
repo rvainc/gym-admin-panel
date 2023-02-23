@@ -1,1 +1,0 @@
-import{_ as a}from"./AuthenticatedLayout.5954210c.js";import{o as e,i as t,w as o,g as r}from"./app.1406f759.js";const m={__name:"Dashboard",setup(s){return(_,c)=>(e(),t(a,null,{default:o(()=>[r(" hello ")]),_:1}))}};export{m as default};
